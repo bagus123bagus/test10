@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyrinx AI - Advanced Conversational Intelligence</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #63bbf1;
+            --primary-dark: #63bbf1;
+            --primary-light: #818cf8;
+            --secondary: #5c80f6;
+            --secondary-dark: #7c3aed;
+            --secondary-light: #a78bfa;
+            --accent: #06b6d4;
+            --accent-dark: #0891b2;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --success: #10b981;
+            
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1e293b;
+            --bg-card: #1a1a2e;
+            
+            --text-primary: #e2e8f0;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            
+            --border-light: #2d3748;
+            --border-medium: #4a5568;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
+            --shadow-xl: 0 16px 60px rgba(0, 0, 0, 0.7);
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-2xl: 32px;
+            
+            --transition-fast: all 0.2s ease;
+            --transition-normal: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
+            
+            --header-height: 72px;
+            --container-max-width: 1280px;
+            --container-padding: 1rem;
+        }
+
+        .light-mode {
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #e2e8f0;
+            --bg-tertiary: #cbd5e1;
+            --bg-card: #ffffff;
+            
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 16px 60px rgba(0, 0, 0, 0.16);
+        }
+
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 14px;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition-normal);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Space Background Elements */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+        }
+
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, transparent, white, transparent);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .planet {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .planet-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            right: 5%;
+            background: radial-gradient(circle at 30% 30%, var(--primary), transparent);
+            box-shadow: 0 0 100px var(--primary);
+        }
+
+        .planet-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 15%;
+            left: 5%;
+            background: radial-gradient(circle at 70% 30%, var(--secondary), transparent);
+            box-shadow: 0 0 80px var(--secondary);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes shootingStar {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(1000px) translateY(1000px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            width: 100%;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition-normal);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .light-mode header {
+            background-color: rgba(240, 244, 248, 0.8);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            padding: 0 var(--container-padding);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition-normal);
+        }
+
+        .logo:hover {
+            transform: translateY(-1px);
+        }
+
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            overflow: hidden;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            position: relative;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(15deg);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 8px;
+        }
+
+        /* Page Styles */
+        .page {
+            display: none;
+            min-height: calc(100vh - var(--header-height));
+            padding-top: calc(var(--header-height) + 20px);
+            animation: fadeInUp 0.6s ease forwards;
+            width: 100%;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Home Page */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            word-wrap: break-word;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px 32px;
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-normal);
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition-slow);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-md);
+            border: 2px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0 60px;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .developer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--radius-lg);
+            margin-top: 20px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+        }
+
+        .developer-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .developer-badge i {
+            font-size: 1.5rem;
+        }
+
+        .developer-badge span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0 60px;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+            font-size: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Chat Page */
+        .chat-page {
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - var(--header-height) - 80px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chat-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .chat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: 32px;
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-light);
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chat-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .chat-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chat-card h2 i {
+            color: var(--primary);
+        }
+
+        .chat-container {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border-light);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+            animation: messageFadeIn 0.4s ease-out;
+        }
+
+        @keyframes messageFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .user-message .message-avatar {
+            margin-right: 0;
+            margin-left: 12px;
+            background: var(--secondary);
+        }
+
+        .message-content {
+            max-width: 75%;
+        }
+
+        .message-content p {
+            background: var(--bg-tertiary);
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            box-shadow: var(--shadow-sm);
+            word-break: break-word;
+            animation: messagePop 0.3s ease-out;
+            border: 1px solid var(--border-light);
+        }
+
+        @keyframes messagePop {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .user-message .message-content p {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-bottom-right-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bot-message .message-content p {
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-time {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            text-align: right;
+        }
+
+        .user-message .message-time {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 14px 18px;
+            background: var(--bg-tertiary);
+            border-radius: 20px;
+            width: fit-content;
+            margin-bottom: 15px;
+            border-bottom-left-radius: 5px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .typing-indicator span {
+            height: 9px;
+            width: 9px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 3px;
+            opacity: 0.4;
+        }
+
+        .typing-indicator span:nth-child(1) {
+            animation: typing 1.2s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation: typing 1.2s infinite 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation: typing 1.2s infinite 0.4s;
+        }
+
+        @keyframes typing {
+            0% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-3px); }
+            100% { opacity: 0.4; transform: translateY(0); }
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 20px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-light);
+            gap: 12px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid var(--border-medium);
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: var(--transition-normal);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .chat-input input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        .chat-input button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .chat-input button:hover {
+            transform: scale(1.08);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .chat-input button:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Features Page */
+        .features-page {
+            padding: 80px 0 60px;
+        }
+
+        .features-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .features-category {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .features-category h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .features-category h3 i {
+            font-size: 1.5rem;
+        }
+
+        .category-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .category-feature {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+            border: 1px solid var(--border-light);
+        }
+
+        .category-feature:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-feature h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-feature h4 i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .category-feature p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* About Page */
+        .about-page {
+            padding: 80px 0 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 60%;
+            height: auto;
+            display: block;
+            transition: var(--transition-normal);
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .developer-info {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            margin-top: 30px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: var(--transition-normal);
+        }
+
+        .developer-info:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .developer-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+
+        .developer-info p {
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 60px 0 20px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1023px) {
+            .nav-menu {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 280px;
+                height: calc(100vh - var(--header-height));
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 30px 20px;
+                box-shadow: var(--shadow-xl);
+                transition: var(--transition-normal);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .features-category {
+                padding: 30px 20px;
+            }
+
+            .category-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            :root {
+                --container-padding: 1rem;
+            }
+
+            .container {
+                padding: 0 var(--container-padding);
+            }
+
+            .nav-container {
+                padding: 0 var(--container-padding);
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .chat-card {
+                padding: 24px;
+            }
+
+            .features-category {
+                padding: 24px 16px;
+            }
+
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-img {
+                width: 36px;
+                height: 36px;
+                font-size: 16px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        .text-secondary { color: var(--secondary); }
+        .text-accent { color: var(--accent); }
+        .mb-0 { margin-bottom: 0; }
+        .mb-1 { margin-bottom: 8px; }
+        .mb-2 { margin-bottom: 16px; }
+        .mb-3 { margin-bottom: 24px; }
+        .mb-4 { margin-bottom: 32px; }
+        .mt-4 { margin-top: 32px; }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Space Background Elements -->
+    <div class="space-background"></div>
+    <div class="stars-container" id="stars-container"></div>
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" id="home-link">
+                <div class="logo-img">
+                    <img src="Logo.png" alt="Zephyrinx AI Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none;">Z</span>
+                </div>
+                <span>Zephyrinx AI</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link" id="home-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-link" id="features-nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Features</span>
+                </a>
+                <a href="#" class="nav-link" id="chat-nav-link">
+                    <i class="fas fa-comments"></i>
+                    <span>AI Chat</span>
+                </a>
+                <a href="#" class="nav-link" id="about-nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home-page" class="page active">
+        <div class="hero">
+            <div class="container hero-content">
+                <h1 class="scroll-animate">Zephyrinx AI: Advanced Conversational Intelligence</h1>
+                <p class="scroll-animate">A sophisticated AI platform for natural and intelligent conversational interactions with cutting-edge artificial intelligence technology</p>
+                <div class="cta-buttons scroll-animate">
+                    <a href="#" class="btn btn-primary" id="start-chat-home">
+                        <i class="fas fa-robot"></i>
+                        <span>Start Chatting</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary" id="learn-more">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="container about-content">
+                <h2 class="scroll-animate">About Zephyrinx AI</h2>
+                <p class="scroll-animate">Zephyrinx AI is an innovative platform developed to provide the most natural and intelligent AI conversational experience. This platform was created by <b>GishhGNTG</b>, a developer with a passion for creating AI solutions accessible to everyone.</p>
+                <p class="scroll-animate">Using the latest NLP (Natural Language Processing) technology, Zephyrinx AI can understand conversation context, remember previous interactions, and provide relevant and meaningful responses.</p>
+                <p class="scroll-animate">This platform was created with the aim of democratizing access to advanced AI technology, so that individuals, businesses, and organizations can leverage the power of AI in their daily communication.</p>
+                
+                <div class="developer-badge scroll-animate">
+                    <i class="fas fa-code"></i>
+                    <span>Created & Developed by GishhGNTG</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="container">
+                <div class="page-header">
+                    <h2 class="page-title scroll-animate">Key Features</h2>
+                    <p class="page-subtitle scroll-animate">Enjoy various advanced features that will enhance your AI interaction experience</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Advanced AI</h3>
+                        <p>Powered by the latest NLP technology for natural conversations and intelligent human-like responses.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Context Memory</h3>
+                        <p>Remembers previous conversations for continuous and meaningful interactions.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Multilingual</h3>
+                        <p>Speak in various languages with cultural understanding and accurate translation.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Instant responses with minimal latency for natural and real-time conversations.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy Focused</h3>
+                        <p>End-to-end encryption ensures your conversations remain completely private and secure.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Customizable</h3>
+                        <p>Personalize AI personality, tone, and response style to suit your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section id="features-page" class="page">
+        <div class="features-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">Features</h1>
+                    <p class="page-subtitle scroll-animate">Explore the comprehensive features that make Zephyrinx AI the most advanced conversational platform</p>
+                </div>
+
+                <div class="features-categories">
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-brain"></i> Core AI Capabilities</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-comment-dots"></i> Natural Language Understanding</h4>
+                                <p>Advanced NLP algorithms that understand context, sentiment, and intent for more meaningful conversations.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-memory"></i> Contextual Memory</h4>
+                                <p>Remembers conversation history and context to provide coherent and personalized responses.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-language"></i> Multilingual Support</h4>
+                                <p>Communicate in multiple languages with accurate translation and cultural understanding.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-shield-alt"></i> Security & Privacy</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-lock"></i> End-to-End Encryption</h4>
+                                <p>All conversations are encrypted to ensure your privacy and data security.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-user-secret"></i> Anonymous Mode</h4>
+                                <p>Option to use the platform without personal identification for complete privacy.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-database"></i> Data Control</h4>
+                                <p>Full control over your data with options to export or delete conversation history.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-rocket"></i> Performance & Integration</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-bolt"></i> High Performance</h4>
+                                <p>Optimized for speed with fast response times for seamless conversations.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-plug"></i> API Integration</h4>
+                                <p>Comprehensive API for integrating Zephyrinx AI into your applications and workflows.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-mobile-alt"></i> Cross-Platform</h4>
+                                <p>Access Zephyrinx AI on web, mobile, and desktop with synchronized conversations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Page -->
+    <section id="chat-page" class="page">
+        <div class="chat-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">Zephyrinx AI Chat</h1>
+                    <p class="page-subtitle scroll-animate">Interact with our advanced AI and experience natural and intelligent conversations</p>
+                </div>
+
+                <div class="chat-grid">
+                    <div class="chat-card scroll-animate">
+                        <h2><i class="fas fa-comments"></i> Chat Interface</h2>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="message bot-message">
+                                    <div class="message-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="message-content">
+                                        <p>Hello! I'm Zephyrinx AI, your intelligent AI assistant. How can I help you today?</p>
+                                        <span class="message-time">Just now</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="user-input" placeholder="Type your message here...">
+                                <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about-page" class="page">
+        <div class="about-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">About Zephyrinx AI</h1>
+                    <p class="page-subtitle scroll-animate">Learn more about our mission, vision, and the technology behind Zephyrinx AI</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2 class="scroll-animate">Zephyrinx AI</h2>
+                        <p class="scroll-animate">Zephyrinx AI was created with a bold yet simple mission: to deliver the most natural and intuitive conversational AI experience ever built. Our platform integrates state-of-the-art natural language processing with advanced machine learning to understand and respond to human communication in ways previously unimaginable.</p>
+                        <p class="scroll-animate">We believe that artificial intelligence should empower people, not replace them. That's why Zephyrinx AI is designed as a truly collaborative partner: one that understands context, remembers past interactions, and adapts to each user's unique communication style.</p>
+                        <p class="scroll-animate">Our technology is rooted in years of research across computational linguistics, neural networks, and cognitive science. We continuously refine our systems to ensure that every interaction with Zephyrinx AI feels more natural, insightful, and engaging than the last.</p>
+                        
+                        <div class="developer-info scroll-animate">
+                            <h3>About the Developer</h3>
+                            <p>Zephyrinx AI was created and developed by <strong>GishhGNTG</strong>, a passionate developer dedicated to making advanced AI technology accessible to everyone. With a focus on user experience and cutting-edge technology, <b>GishhGNTG</b> has crafted a platform that bridges the gap between complex AI systems and everyday users.</p>
+                        </div>
+                    </div>
+                    <div class="about-image scroll-animate">
+                        <img src="Logo.png" alt="Zephyrinx AI Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <center>
+                <div class="footer-section">
+                    <h3>Zephyrinx AI</h3>
+                    <p>A sophisticated AI platform for natural and intelligent conversational interactions with cutting-edge artificial intelligence technology.</p>
+                    <p>Supporting individuals, businesses, and organizations in leveraging the power of AI for more effective and efficient communication.</p>
+                </div>
+                </center>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-nav-link" data-target="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="chat"><i class="fas fa-chevron-right"></i> AI Chat</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Zephyrinx AI. All rights reserved. | Created & Developed by GishhGNTG</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ============================================
+            // GROQ API CONFIGURATION - PASTE YOUR API KEY HERE
+            // ============================================
+            const GROQ_API_KEY = "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"; // ← REPLACE WITH YOUR GROQ API KEY
+            const GROQ_MODEL = "llama-3.1-8b-instant"; // Free and fast model
+
+            // Create space background elements
+            function createSpaceBackground() {
+                const starsContainer = document.getElementById('stars-container');
+                const starsCount = 200;
+                
+                // Create stars
+                for (let i = 0; i < starsCount; i++) {
+                    const star = document.createElement('div');
+                    star.classList.add('star');
+                    
+                    const size = Math.random() * 3;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const duration = 2 + Math.random() * 8;
+                    const delay = Math.random() * 5;
+                    
+                    star.style.width = `${size}px`;
+                    star.style.height = `${size}px`;
+                    star.style.left = `${posX}%`;
+                    star.style.top = `${posY}%`;
+                    star.style.animationDuration = `${duration}s`;
+                    star.style.animationDelay = `${delay}s`;
+                    
+                    starsContainer.appendChild(star);
+                }
+                
+                // Create shooting stars periodically
+                setInterval(() => {
+                    createShootingStar();
+                }, 3000);
+            }
+            
+            function createShootingStar() {
+                const starsContainer = document.getElementById('stars-container');
+                const shootingStar = document.createElement('div');
+                shootingStar.classList.add('shooting-star');
+                
+                const startX = Math.random() * 20;
+                const startY = Math.random() * 20;
+                
+                shootingStar.style.left = `${startX}%`;
+                shootingStar.style.top = `${startY}%`;
+                shootingStar.style.animation = `shootingStar ${2 + Math.random() * 3}s ease-out`;
+                
+                starsContainer.appendChild(shootingStar);
+                
+                // Remove shooting star after animation
+                setTimeout(() => {
+                    if (shootingStar.parentNode) {
+                        shootingStar.parentNode.removeChild(shootingStar);
+                    }
+                }, 5000);
+            }
+            
+            // DOM Elements
+            const homePage = document.getElementById('home-page');
+            const featuresPage = document.getElementById('features-page');
+            const chatPage = document.getElementById('chat-page');
+            const aboutPage = document.getElementById('about-page');
+            
+            // Navigation elements
+            const homeNavLink = document.getElementById('home-nav-link');
+            const featuresNavLink = document.getElementById('features-nav-link');
+            const chatNavLink = document.getElementById('chat-nav-link');
+            const aboutNavLink = document.getElementById('about-nav-link');
+            const homeLink = document.getElementById('home-link');
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navMenu = document.getElementById('nav-menu');
+
+            // Navigation functions
+            function navigateToHome() {
+                setActivePage(homePage);
+                setActiveNavLink(homeNavLink);
+            }
+
+            function navigateToFeatures() {
+                setActivePage(featuresPage);
+                setActiveNavLink(featuresNavLink);
+            }
+
+            function navigateToChat() {
+                setActivePage(chatPage);
+                setActiveNavLink(chatNavLink);
+            }
+
+            function navigateToAbout() {
+                setActivePage(aboutPage);
+                setActiveNavLink(aboutNavLink);
+            }
+
+            function setActivePage(page) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                page.classList.add('active');
+                window.scrollTo(0, 0);
+                closeMobileMenu();
+                // Trigger scroll animations after page change
+                setTimeout(initScrollAnimations, 100);
+            }
+
+            function setActiveNavLink(link) {
+                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                link.classList.add('active');
+            }
+
+            function closeMobileMenu() {
+                navMenu.classList.remove('active');
+            }
+
+            function toggleMobileMenu() {
+                navMenu.classList.toggle('active');
+            }
+
+            // Event listeners for navigation
+            homeNavLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToHome();
+            });
+
+            featuresNavLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToFeatures();
+            });
+
+            chatNavLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToChat();
+            });
+
+            aboutNavLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToAbout();
+            });
+
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToHome();
+            });
+
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+            // Home page buttons
+            document.getElementById('start-chat-home').addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToChat();
+            });
+
+            document.getElementById('learn-more').addEventListener('click', (e) => {
+                e.preventDefault();
+                // Scroll to features section
+                document.querySelector('.features').scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Theme toggle functionality
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-mode');
+                if (document.body.classList.contains('light-mode')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+
+            // Chat functionality
+            const chatMessages = document.getElementById('chat-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+
+            // Chat state
+            let conversationHistory = [
+                { role: 'assistant', content: "Hello! I'm Zephyrinx AI, your intelligent AI assistant. How can I help you today?" }
+            ];
+
+            // Function to add message to chat
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'message-avatar';
+                
+                if (isUser) {
+                    avatarDiv.innerHTML = '<i class="fas fa-user"></i>';
+                } else {
+                    avatarDiv.innerHTML = '<i class="fas fa-robot"></i>';
+                }
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                
+                const messageText = document.createElement('p');
+                messageText.textContent = text;
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'message-time';
+                timeSpan.textContent = timeString;
+                
+                contentDiv.appendChild(messageText);
+                contentDiv.appendChild(timeSpan);
+                
+                messageDiv.appendChild(avatarDiv);
+                messageDiv.appendChild(contentDiv);
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                conversationHistory.push({
+                    role: isUser ? 'user' : 'assistant',
+                    content: text
+                });
+            }
+            
+            // Function to show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot-message';
+                
+                const avatarDiv = document.createElement('div');
+                avatarDiv.className = 'message-avatar';
+                avatarDiv.innerHTML = '<i class="fas fa-robot"></i>';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'typing-indicator';
+                typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+                
+                contentDiv.appendChild(typingIndicator);
+                typingDiv.appendChild(avatarDiv);
+                typingDiv.appendChild(contentDiv);
+                
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                return typingDiv;
+            }
+            
+            // Function to call GROQ API
+            async function callGroqAPI(userMessage) {
+                try {
+                    // Show loading state on send button
+                    sendButton.innerHTML = '<div class="spinner"></div>';
+                    sendButton.disabled = true;
+                    
+                    // Add user message to conversation history
+                    conversationHistory.push({ role: 'user', content: userMessage });
+                    
+                    // GROQ API call
+                    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${GROQ_API_KEY}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            "model": GROQ_MODEL,
+                            "messages": conversationHistory,
+                            "temperature": 0.7,
+                            "max_tokens": 1024,
+                            "stream": false
+                        })
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // Restore send button
+                    sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                    sendButton.disabled = false;
+                    
+                    if (data.choices && data.choices[0] && data.choices[0].message) {
+                        return data.choices[0].message.content;
+                    } else {
+                        throw new Error('Invalid response format from API');
+                    }
+                    
+                } catch (error) {
+                    console.error('API Error:', error);
+                    
+                    // Restore send button
+                    sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                    sendButton.disabled = false;
+                    
+                    throw error;
+                }
+            }
+            
+            // Function to handle bot response
+            async function botRespond(userMessage) {
+                // Show typing indicator
+                const typingIndicator = showTypingIndicator();
+                
+                try {
+                    // Call GROQ API
+                    const response = await callGroqAPI(userMessage);
+                    
+                    // Remove typing indicator
+                    chatMessages.removeChild(typingIndicator);
+                    
+                    // Add response to chat
+                    addMessage(response, false);
+                    
+                } catch (error) {
+                    console.error('Error generating response:', error);
+                    chatMessages.removeChild(typingIndicator);
+                    
+                    let errorMessage;
+                    
+                    if (error.message.includes('API error: 401') || error.message.includes('API error: 403')) {
+                        errorMessage = "Sorry, there's an issue with API access. Please make sure the API key is correct and valid.";
+                    } else if (error.message.includes('API error: 429')) {
+                        errorMessage = "Too many requests. Please try again in a moment.";
+                    } else if (error.message.includes('Failed to fetch')) {
+                        errorMessage = "Connection issue. Check your internet connection and try again.";
+                    } else {
+                        errorMessage = "Sorry, an error occurred while processing your request. Please try again.";
+                    }
+                    
+                    addMessage(errorMessage, false);
+                }
+            }
+            
+            // Event listeners for chat
+            sendButton.addEventListener('click', function() {
+                const message = userInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+                    botRespond(message);
+                }
+            });
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const message = userInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        userInput.value = '';
+                        botRespond(message);
+                    }
+                }
+            });
+
+            // Footer navigation
+            document.addEventListener('DOMContentLoaded', function() {
+                const footerLinks = document.querySelectorAll('.footer-nav-link');
+                footerLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = this.getAttribute('data-target');
+                        
+                        switch(target) {
+                            case 'home':
+                                navigateToHome();
+                                break;
+                            case 'features':
+                                navigateToFeatures();
+                                break;
+                            case 'chat':
+                                navigateToChat();
+                                break;
+                            case 'about':
+                                navigateToAbout();
+                                break;
+                            default:
+                                navigateToHome();
+                        }
+                    });
+                });
+            });
+
+            // Scroll Animation Functionality
+            function initScrollAnimations() {
+                const animatedElements = document.querySelectorAll('.scroll-animate');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                animatedElements.forEach(element => {
+                    observer.observe(element);
+                });
+            }
+
+            // Initialize the app
+            document.addEventListener('DOMContentLoaded', function() {
+                createSpaceBackground(); // Create space background
+                setActiveNavLink(homeNavLink); // Set home as active initially
+                initScrollAnimations(); // Initialize scroll animations
+                
+                // Check if API key is set
+                if (GROQ_API_KEY === "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") {
+                    console.warn("GROQ API key is not set. Please replace the GROQ_API_KEY value with your API key.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

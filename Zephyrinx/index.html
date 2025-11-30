@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zephyrinx AI - Advanced Conversational Intelligence</title>
+    <link rel="icon" href="Logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Space Background Elements -->
+    <div class="space-background"></div>
+    <div class="stars-container" id="stars-container"></div>
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" id="home-link">
+                <div class="logo-img">
+                    <img src="Logo.png" alt="Zephyrinx AI Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span style="display:none;">Z</span>
+                </div>
+                <span>Zephyrinx AI</span>
+            </a>
+            
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link" id="home-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-link" id="features-nav-link">
+                    <i class="fas fa-star"></i>
+                    <span>Features</span>
+                </a>
+                <a href="#" class="nav-link" id="chat-nav-link">
+                    <i class="fas fa-comments"></i>
+                    <span>AI Chat</span>
+                </a>
+                <a href="#" class="nav-link" id="about-nav-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home-page" class="page active">
+        <div class="hero">
+            <div class="container hero-content">
+                <h1 class="scroll-animate">Zephyrinx AI: Advanced Conversational Intelligence</h1>
+                <p class="scroll-animate">A sophisticated AI platform for natural and intelligent conversational interactions with cutting-edge artificial intelligence technology</p>
+                <div class="cta-buttons scroll-animate">
+                    <a href="#" class="btn btn-primary" id="start-chat-home">
+                        <i class="fas fa-robot"></i>
+                        <span>Start Chatting</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary" id="learn-more">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Learn More</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <div class="container about-content">
+                <h2 class="scroll-animate">About Zephyrinx AI</h2>
+                <p class="scroll-animate">Zephyrinx AI is an innovative platform developed to provide the most natural and intelligent AI conversational experience. This platform was created by <b>GishhGNTG</b>, a developer with a passion for creating AI solutions accessible to everyone.</p>
+                <p class="scroll-animate">Using the latest NLP (Natural Language Processing) technology, Zephyrinx AI can understand conversation context, remember previous interactions, and provide relevant and meaningful responses.</p>
+                <p class="scroll-animate">This platform was created with the aim of democratizing access to advanced AI technology, so that individuals, businesses, and organizations can leverage the power of AI in their daily communication.</p>
+                
+                <div class="developer-badge scroll-animate">
+                    <i class="fas fa-code"></i>
+                    <span>Created & Developed by GishhGNTG</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="container">
+                <div class="page-header">
+                    <h2 class="page-title scroll-animate">Key Features</h2>
+                    <p class="page-subtitle scroll-animate">Enjoy various advanced features that will enhance your AI interaction experience</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Advanced AI</h3>
+                        <p>Powered by the latest NLP technology for natural conversations and intelligent human-like responses.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>Context Memory</h3>
+                        <p>Remembers previous conversations for continuous and meaningful interactions.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Multilingual</h3>
+                        <p>Speak in various languages with cultural understanding and accurate translation.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Instant responses with minimal latency for natural and real-time conversations.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy Focused</h3>
+                        <p>End-to-end encryption ensures your conversations remain completely private and secure.</p>
+                    </div>
+                    <div class="feature-card scroll-animate">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Customizable</h3>
+                        <p>Personalize AI personality, tone, and response style to suit your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Page -->
+    <section id="features-page" class="page">
+        <div class="features-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">Features</h1>
+                    <p class="page-subtitle scroll-animate">Explore the comprehensive features that make Zephyrinx AI the most advanced conversational platform</p>
+                </div>
+
+                <div class="features-categories">
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-brain"></i> Core AI Capabilities</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-comment-dots"></i> Natural Language Understanding</h4>
+                                <p>Advanced NLP algorithms that understand context, sentiment, and intent for more meaningful conversations.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-memory"></i> Contextual Memory</h4>
+                                <p>Remembers conversation history and context to provide coherent and personalized responses.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-language"></i> Multilingual Support</h4>
+                                <p>Communicate in multiple languages with accurate translation and cultural understanding.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-shield-alt"></i> Security & Privacy</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-lock"></i> End-to-End Encryption</h4>
+                                <p>All conversations are encrypted to ensure your privacy and data security.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-user-secret"></i> Anonymous Mode</h4>
+                                <p>Option to use the platform without personal identification for complete privacy.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-database"></i> Data Control</h4>
+                                <p>Full control over your data with options to export or delete conversation history.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-category scroll-animate">
+                        <h3><i class="fas fa-rocket"></i> Performance & Integration</h3>
+                        <div class="category-features-grid">
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-bolt"></i> High Performance</h4>
+                                <p>Optimized for speed with fast response times for seamless conversations.</p>
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-plug"></i> Seamless Integration</h4>
+                                <p></p>Easy to connect to various systems, applications and workflows without complicated configuration.
+                            </div>
+                            <div class="category-feature scroll-animate">
+                                <h4><i class="fas fa-mobile-alt"></i> Cross-Platform</h4>
+                                <p>Access Zephyrinx AI on web, mobile, and desktop with synchronized conversations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Page -->
+    <section id="chat-page" class="page">
+        <div class="chat-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">Zephyrinx AI Chat</h1>
+                    <p class="page-subtitle scroll-animate">Interact with our advanced AI and experience natural and intelligent conversations</p>
+                </div>
+
+                <div class="chat-grid">
+                    <div class="chat-card scroll-animate">
+                        <h2><i class="fas fa-comments"></i> Chat Interface</h2>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chat-messages">
+                                <div class="message bot-message">
+                                    <div class="message-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="message-content">
+                                        <p>Hello! I'm Zephyrinx AI, your intelligent AI assistant. How can I help you today?</p>
+                                        <span class="message-time">Just now</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="user-input" placeholder="Type your message here...">
+                                <button id="send-button"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about-page" class="page">
+        <div class="about-page">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title scroll-animate">About Zephyrinx AI</h1>
+                    <p class="page-subtitle scroll-animate">Learn more about our mission, vision, and the technology behind Zephyrinx AI</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2 class="scroll-animate">Zephyrinx AI</h2>
+                        <p class="scroll-animate">Zephyrinx AI was created with a bold yet simple mission: to deliver the most natural and intuitive conversational AI experience ever built. Our platform integrates state-of-the-art natural language processing with advanced machine learning to understand and respond to human communication in ways previously unimaginable.</p>
+                        <p class="scroll-animate">We believe that artificial intelligence should empower people, not replace them. That's why Zephyrinx AI is designed as a truly collaborative partner: one that understands context, remembers past interactions, and adapts to each user's unique communication style.</p>
+                        <p class="scroll-animate">Our technology is rooted in years of research across computational linguistics, neural networks, and cognitive science. We continuously refine our systems to ensure that every interaction with Zephyrinx AI feels more natural, insightful, and engaging than the last.</p>
+                        
+                        <div class="developer-info scroll-animate">
+                            <h3>About the Developer</h3>
+                            <p>Zephyrinx AI was created and developed by <strong>GishhGNTG</strong>, a passionate developer dedicated to making advanced AI technology accessible to everyone. With a focus on user experience and cutting-edge technology, <b>GishhGNTG</b> has crafted a platform that bridges the gap between complex AI systems and everyday users.</p>
+                        </div>
+                    </div>
+                    <div class="about-image scroll-animate">
+                        <img src="Logo.png" alt="Zephyrinx AI Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <center>
+                <div class="footer-section">
+                    <h3>Zephyrinx AI</h3>
+                    <p>A sophisticated AI platform for natural and intelligent conversational interactions with cutting-edge artificial intelligence technology.</p>
+                    <p>Supporting individuals, businesses, and organizations in leveraging the power of AI for more effective and efficient communication.</p>
+                </div>
+                </center>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-nav-link" data-target="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="features"><i class="fas fa-chevron-right"></i> Features</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="chat"><i class="fas fa-chevron-right"></i> AI Chat</a></li>
+                        <li><a href="#" class="footer-nav-link" data-target="about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Zephyrinx AI. All rights reserved. | Created & Developed by GishhGNTG</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
